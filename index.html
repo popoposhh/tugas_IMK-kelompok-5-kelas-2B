@@ -15,12 +15,12 @@
             font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
             background: #fefcf5;
             color: #2D3E2B;
-            line-height: 1.5;
+            line-height: 1.4;
             font-size: 100%;
         }
 
-        /* HP FRIENDLY - semuanya gede */
-        button, .filter-btn, .alergi-checkbox, .add-to-cart, .cart-btn, .access-btn {
+        /* Tomol HP gede */
+        button {
             min-height: 44px;
             touch-action: manipulation;
             cursor: pointer;
@@ -40,33 +40,30 @@
             z-index: 999;
             font-size: 12px;
         }
-        .skip-link:focus-visible {
-            top: 10px;
-        }
+        .skip-link:focus-visible { top: 10px; }
 
-        /* HEADER - DIPERBAIKI UNTUK HP */
+        /* HEADER */
         .header {
-            background: rgba(255, 249, 240, 0.98);
-            backdrop-filter: blur(10px);
+            background: #FFF9F0;
             position: sticky;
             top: 0;
             z-index: 100;
             padding: 10px 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
-        .logo-row {
+        /* Baris 1: Logo + Keranjang */
+        .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 10px;
         }
-
         .logo {
-            font-size: 1.3rem;
-            font-weight: 700;
+            font-size: 1.4rem;
+            font-weight: bold;
             color: #E8B86B;
         }
-
         .cart-btn {
             background: #E8B86B;
             color: white;
@@ -77,9 +74,7 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            position: relative;
         }
-
         .cart-count {
             background: #FF8C42;
             border-radius: 50%;
@@ -87,22 +82,24 @@
             font-size: 12px;
         }
 
-        /* ACCESS TOOLBAR - BISA SCROLL HORIZONTAL DI HP */
-        .access-toolbar {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            justify-content: center;
+        /* Baris 2: Tombol akses (scroll horizontal di HP) */
+        .access-row {
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 6px;
+            margin-bottom: 4px;
         }
-
+        .access-buttons {
+            display: inline-flex;
+            gap: 8px;
+        }
         .access-btn {
             background: white;
-            border: none;
+            border: 1px solid #FFE0B5;
             padding: 8px 14px;
             border-radius: 40px;
             font-weight: 600;
             font-size: 13px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             color: #E8B86B;
         }
 
@@ -110,23 +107,21 @@
         .hero {
             text-align: center;
             padding: 20px 12px;
-            background: linear-gradient(120deg, #FFF3E0, #FEFCF5);
+            background: #FEFAF5;
         }
         .hero h1 {
             font-size: 1.6rem;
-            margin-bottom: 8px;
             color: #E8B86B;
         }
         .hero p {
             font-size: 12px;
         }
 
-        /* FILTER SECTION */
-        .filter-section {
-            padding: 0 12px;
-            margin-top: 12px;
+        /* FILTER */
+        .filter-panel {
+            padding: 10px 12px;
         }
-        .filter-group {
+        .filter-card {
             background: white;
             border-radius: 20px;
             padding: 12px;
@@ -134,58 +129,59 @@
             border: 1px solid #FFE8CC;
         }
         .filter-title {
-            font-weight: 700;
-            margin-bottom: 10px;
+            font-weight: bold;
+            margin-bottom: 8px;
             color: #E8B86B;
             font-size: 14px;
         }
-        .filter-buttons {
+        .filter-group {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
         }
-        .filter-btn {
+        .filter-chip {
             background: #FFF3E0;
             border: none;
             padding: 8px 16px;
             border-radius: 40px;
-            font-weight: 500;
             font-size: 13px;
+            font-weight: 500;
         }
-        .filter-btn.active {
+        .filter-chip.active {
             background: #E8B86B;
             color: white;
         }
-        .alergi-checkbox {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+        /* checkbox alergi */
+        .alergi-chip {
             background: #FFF3E0;
             padding: 8px 14px;
             border-radius: 40px;
             font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
-        .alergi-checkbox input {
+        .alergi-chip input {
             width: 18px;
             height: 18px;
             accent-color: #E8B86B;
+            margin: 0;
         }
-        .alergi-checkbox:has(input:checked) {
+        .alergi-chip:has(input:checked) {
             background: #E8B86B;
             color: white;
         }
 
-        /* MENU GRID */
+        /* MENU GRID - DI HP 1 KOLOM */
         .menu-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 14px;
+            gap: 16px;
             padding: 12px;
         }
-
         .card {
             background: white;
-            border-radius: 20px;
+            border-radius: 24px;
             overflow: hidden;
             border: 1px solid #FFE8CC;
         }
@@ -193,19 +189,18 @@
             height: 150px;
             background-size: cover;
             background-position: center;
-            background-color: #FFF3E0;
+            background-color: #FFF0DF;
         }
         .card-content {
             padding: 12px;
         }
         .card h3 {
             font-size: 1.1rem;
-            margin-bottom: 4px;
             color: #E8B86B;
         }
         .price {
             font-size: 1rem;
-            font-weight: 700;
+            font-weight: bold;
             color: #FF8C42;
             margin: 6px 0;
         }
@@ -218,19 +213,16 @@
             padding: 10px;
             border-radius: 40px;
             font-weight: bold;
-            font-size: 14px;
         }
 
         /* MODAL */
         .modal {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: rgba(0,0,0,0.5);
-            z-index: 1000;
+            z-index: 2000;
             align-items: center;
             justify-content: center;
         }
@@ -239,17 +231,16 @@
             width: 90%;
             max-width: 450px;
             border-radius: 28px;
-            padding: 16px;
+            padding: 18px;
             max-height: 80vh;
             overflow-y: auto;
         }
-
         footer {
             background: #FFF3E0;
             text-align: center;
             padding: 16px;
-            margin-top: 20px;
             font-size: 11px;
+            margin-top: 20px;
         }
 
         @media (min-width: 768px) {
@@ -257,57 +248,58 @@
                 grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
                 padding: 20px;
             }
-            .hero h1 { font-size: 2.2rem; }
-            .access-toolbar { justify-content: flex-end; }
-            .logo-row { margin-bottom: 0; }
-            .header { padding: 12px 24px; }
+            .hero h1 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-<a href="#main-content" class="skip-link">Lompat ke konten utama</a>
+<a href="#main-content" class="skip-link">Skip ke konten</a>
 
 <div class="header">
-    <div class="logo-row">
+    <div class="top-bar">
         <div class="logo">🌸 Cafe Bahagia</div>
         <button id="cartBtn" class="cart-btn">🛒 <span id="cartCount" class="cart-count">0</span></button>
     </div>
-    <div class="access-toolbar">
-        <button id="increaseFont" class="access-btn">A+</button>
-        <button id="resetFont" class="access-btn">A</button>
-        <button id="decreaseFont" class="access-btn">A-</button>
-        <button id="highContrast" class="access-btn">🌓 Kontras</button>
-        <button id="grayscale" class="access-btn">⚫ Abu-abu</button>
+    <div class="access-row">
+        <div class="access-buttons">
+            <button id="increaseFont" class="access-btn">A+</button>
+            <button id="resetFont" class="access-btn">A</button>
+            <button id="decreaseFont" class="access-btn">A-</button>
+            <button id="highContrast" class="access-btn">🌓 Kontras</button>
+            <button id="grayscale" class="access-btn">⚫ Abu</button>
+        </div>
     </div>
 </div>
 
 <main id="main-content">
     <div class="hero">
-        <h1>☕ Nikmati Hidangan Terbaik</h1>
-        <p>Ramah disabilitas | Keyboard & suara | Bisa di HP</p>
+        <h1>Nikmati Hidangan Terbaik</h1>
+        <p>Ramah disabilitas | Suara & Keyboard</p>
     </div>
 
-    <div class="filter-section">
-        <div class="filter-group">
+    <div class="filter-panel">
+        <!-- Filter Alergi -->
+        <div class="filter-card">
             <div class="filter-title">⚠️ Filter Alergi</div>
-            <div class="filter-buttons" id="alergiFilterGroup">
-                <label class="alergi-checkbox"><input type="checkbox" value="Kacang"> 🥜 Kacang</label>
-                <label class="alergi-checkbox"><input type="checkbox" value="Susu"> 🥛 Susu</label>
-                <label class="alergi-checkbox"><input type="checkbox" value="Gluten"> 🌾 Gluten</label>
-                <label class="alergi-checkbox"><input type="checkbox" value="Seafood"> 🦐 Seafood</label>
-                <label class="alergi-checkbox"><input type="checkbox" value="Telur"> 🥚 Telur</label>
+            <div class="filter-group" id="alergiGroup">
+                <label class="alergi-chip"><input type="checkbox" value="Kacang"> 🥜 Kacang</label>
+                <label class="alergi-chip"><input type="checkbox" value="Susu"> 🥛 Susu</label>
+                <label class="alergi-chip"><input type="checkbox" value="Gluten"> 🌾 Gluten</label>
+                <label class="alergi-chip"><input type="checkbox" value="Seafood"> 🦐 Seafood</label>
+                <label class="alergi-chip"><input type="checkbox" value="Telur"> 🥚 Telur</label>
             </div>
         </div>
 
-        <div class="filter-group">
+        <!-- Kategori Menu: MAKANAN, MINUMAN, SNACK -->
+        <div class="filter-card">
             <div class="filter-title">🍽️ Kategori Menu</div>
-            <div class="filter-buttons" id="kategoriGroup">
-                <button class="filter-btn active" data-kategori="all">Semua</button>
-                <button class="filter-btn" data-kategori="makanan">🍚 Makanan</button>
-                <button class="filter-btn" data-kategori="minuman">🥤 Minuman</button>
-                <button class="filter-btn" data-kategori="snack">🍿 Snack</button>
-                <button class="filter-btn" data-kategori="vegetarian">🌿 Vegetarian</button>
+            <div class="filter-group" id="kategoriGroup">
+                <button class="filter-chip active" data-kat="all">Semua</button>
+                <button class="filter-chip" data-kat="makanan">🍚 Makanan</button>
+                <button class="filter-chip" data-kat="minuman">🥤 Minuman</button>
+                <button class="filter-chip" data-kat="snack">🍿 Snack</button>
+                <button class="filter-chip" data-kat="vegetarian">🌿 Vegetarian</button>
             </div>
         </div>
     </div>
@@ -322,68 +314,71 @@
         <p><strong>Total: <span id="cartTotal">Rp 0</span></strong></p>
         <button id="speakOrderBtn" style="background:#E8B86B; width:100%; padding:12px; border-radius:40px; margin-bottom:8px;">🔊 Bacakan Pesanan</button>
         <button id="clearAllBtn" style="background:#FF8C42; width:100%; padding:12px; border-radius:40px; margin-bottom:8px;">🗑️ Hapus Semua</button>
-        <button id="checkoutBtn" style="background:#2D5A27; width:100%; padding:12px; border-radius:40px; margin-bottom:8px;">✅ Bayar</button>
-        <button id="closeModal" style="background:#ccc; width:100%; padding:12px; border-radius:40px;">Tutup</button>
+        <button id="checkoutBtn" style="background:#2D5A27; width:100%; padding:12px; border-radius:40px;">✅ Lanjut Bayar</button>
+        <button id="closeModal" style="background:#ccc; width:100%; padding:12px; border-radius:40px; margin-top:8px;">Tutup</button>
     </div>
 </div>
 
 <footer>
-    <p>Cafe Bahagia - Jl. Bahagia No.8, Kediri</p>
-    <p>♿ Aksesibel | 🎧 Support suara & keyboard</p>
+    <p>Cafe Bahagia - Jl. Bahagia No.8 KEDIRI| 🎧 Support suara</p>
 </footer>
 
 <script>
+    // DATA MENU LENGKAP (Makanan, Minuman, Snack)
     const menuData = [
-        // MAKANAN
-        { id: 1, name: "Nasi Goreng Spesial", price: 35000, kategori: "makanan", spicy: true, vegetarian: false, alergen: ["Telur", "Seafood"], img: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=300&fit=crop" },
-        { id: 2, name: "Mie Ayam Jamur", price: 28000, kategori: "makanan", spicy: true, vegetarian: false, alergen: ["Telur", "Gluten"], img: "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400&h=300&fit=crop" },
-        { id: 3, name: "Nasi Bakar Ayam", price: 32000, kategori: "makanan", spicy: true, vegetarian: false, alergen: ["Kacang"], img: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&h=300&fit=crop" },
-        { id: 4, name: "Seafood Pasta", price: 45000, kategori: "makanan", spicy: true, vegetarian: false, alergen: ["Seafood", "Gluten", "Susu"], img: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=400&h=300&fit=crop" },
-        { id: 5, name: "Iga Bakar", price: 55000, kategori: "makanan", spicy: true, vegetarian: false, alergen: ["Kacang"], img: "https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop" },
-        { id: 6, name: "Pizza Margherita", price: 48000, kategori: "makanan", spicy: false, vegetarian: true, alergen: ["Gluten", "Susu"], img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&h=300&fit=crop" },
-        { id: 7, name: "Chicken Katsu", price: 38000, kategori: "makanan", spicy: false, vegetarian: false, alergen: ["Telur", "Gluten"], img: "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400&h=300&fit=crop" },
-        { id: 8, name: "Sate Ayam", price: 35000, kategori: "makanan", spicy: true, vegetarian: false, alergen: ["Kacang"], img: "https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?w=400&h=300&fit=crop" },
-        // MINUMAN
-        { id: 9, name: "Es Kopi Susu", price: 18000, kategori: "minuman", spicy: false, vegetarian: true, alergen: ["Susu"], img: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=300&fit=crop" },
-        { id: 10, name: "Jus Alpukat", price: 22000, kategori: "minuman", spicy: false, vegetarian: true, alergen: ["Susu"], img: "https://images.unsplash.com/photo-1526563372797-8bba9e89e41f?w=400&h=300&fit=crop" },
-        { id: 11, name: "Cappuccino", price: 25000, kategori: "minuman", spicy: false, vegetarian: true, alergen: ["Susu"], img: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&h=300&fit=crop" },
-        { id: 12, name: "Matcha Latte", price: 27000, kategori: "minuman", spicy: false, vegetarian: true, alergen: ["Susu"], img: "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?w=400&h=300&fit=crop" },
-        { id: 13, name: "Thai Tea", price: 20000, kategori: "minuman", spicy: false, vegetarian: true, alergen: ["Susu"], img: "https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=400&h=300&fit=crop" },
-        { id: 14, name: "Es Jeruk", price: 15000, kategori: "minuman", spicy: false, vegetarian: true, alergen: [], img: "https://images.unsplash.com/photo-1546173159-31548f4a1b9f?w=400&h=300&fit=crop" },
-        // SNACK
-        { id: 15, name: "French Fries", price: 15000, kategori: "snack", spicy: false, vegetarian: true, alergen: [], img: "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=400&h=300&fit=crop" },
-        { id: 16, name: "Donat Coklat", price: 12000, kategori: "snack", spicy: false, vegetarian: true, alergen: ["Gluten", "Susu"], img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400&h=300&fit=crop" },
-        { id: 17, name: "Salad Buah", price: 22000, kategori: "snack", spicy: false, vegetarian: true, alergen: [], img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop" },
-        { id: 18, name: "Risol Mayo", price: 15000, kategori: "snack", spicy: false, vegetarian: false, alergen: ["Telur", "Susu"], img: "https://images.unsplash.com/photo-1627661254695-5262b788be9d?w=400&h=300&fit=crop" },
-        { id: 19, name: "Brownies Sundae", price: 28000, kategori: "snack", spicy: false, vegetarian: true, alergen: ["Gluten", "Susu"], img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&h=300&fit=crop" },
-        { id: 20, name: "Lumpia Semarang", price: 25000, kategori: "snack", spicy: false, vegetarian: false, alergen: ["Telur", "Gluten"], img: "https://images.unsplash.com/photo-1627661254695-5262b788be9d?w=400&h=300&fit=crop" }
+        // Makanan (id 1-9)
+        { id: 1, name: "Nasi Goreng Spesial", price: 35000, kategori: "makanan", spicy: true, vegetarian: false, alergen: ["Telur","Seafood"], img:"https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=300&fit=crop" },
+        { id: 2, name: "Mie Ayam Jamur", price: 28000, kategori: "makanan", spicy: true, vegetarian: false, alergen: ["Telur","Gluten"], img:"https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400&h=300&fit=crop" },
+        { id: 3, name: "Nasi Bakar Ayam", price: 32000, kategori: "makanan", spicy: true, vegetarian: false, alergen: ["Kacang"], img:"https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&h=300&fit=crop" },
+        { id: 4, name: "Seafood Pasta", price: 45000, kategori: "makanan", spicy: true, vegetarian: false, alergen: ["Seafood","Gluten","Susu"], img:"https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=400&h=300&fit=crop" },
+        { id: 5, name: "Iga Bakar", price: 55000, kategori: "makanan", spicy: true, vegetarian: false, alergen: ["Kacang"], img:"https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop" },
+        { id: 6, name: "Pizza Margherita", price: 48000, kategori: "makanan", spicy: false, vegetarian: true, alergen: ["Gluten","Susu"], img:"https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&h=300&fit=crop" },
+        { id: 7, name: "Chicken Katsu", price: 38000, kategori: "makanan", spicy: false, vegetarian: false, alergen: ["Telur","Gluten"], img:"https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400&h=300&fit=crop" },
+        { id: 8, name: "Sate Ayam", price: 35000, kategori: "makanan", spicy: true, vegetarian: false, alergen: ["Kacang"], img:"https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?w=400&h=300&fit=crop" },
+        // Minuman
+        { id: 9, name: "Es Kopi Susu", price: 18000, kategori: "minuman", spicy: false, vegetarian: true, alergen: ["Susu"], img:"https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=300&fit=crop" },
+        { id: 10, name: "Jus Alpukat", price: 22000, kategori: "minuman", spicy: false, vegetarian: true, alergen: ["Susu"], img:"https://images.unsplash.com/photo-1526563372797-8bba9e89e41f?w=400&h=300&fit=crop" },
+        { id: 11, name: "Cappuccino", price: 25000, kategori: "minuman", spicy: false, vegetarian: true, alergen: ["Susu"], img:"https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&h=300&fit=crop" },
+        { id: 12, name: "Matcha Latte", price: 27000, kategori: "minuman", spicy: false, vegetarian: true, alergen: ["Susu"], img:"https://images.unsplash.com/photo-1515823064-d6e0c04616a7?w=400&h=300&fit=crop" },
+        { id: 13, name: "Thai Tea", price: 20000, kategori: "minuman", spicy: false, vegetarian: true, alergen: ["Susu"], img:"https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=400&h=300&fit=crop" },
+        { id: 14, name: "Es Jeruk", price: 15000, kategori: "minuman", spicy: false, vegetarian: true, alergen: [], img:"https://images.unsplash.com/photo-1546173159-31548f4a1b9f?w=400&h=300&fit=crop" },
+        // Snack
+        { id: 15, name: "French Fries", price: 15000, kategori: "snack", spicy: false, vegetarian: true, alergen: [], img:"https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=400&h=300&fit=crop" },
+        { id: 16, name: "Donat Coklat", price: 12000, kategori: "snack", spicy: false, vegetarian: true, alergen: ["Gluten","Susu"], img:"https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400&h=300&fit=crop" },
+        { id: 17, name: "Salad Buah", price: 22000, kategori: "snack", spicy: false, vegetarian: true, alergen: [], img:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop" },
+        { id: 18, name: "Risol Mayo", price: 15000, kategori: "snack", spicy: false, vegetarian: false, alergen: ["Telur","Susu"], img:"https://images.unsplash.com/photo-1627661254695-5262b788be9d?w=400&h=300&fit=crop" },
+        { id: 19, name: "Brownies Sundae", price: 28000, kategori: "snack", spicy: false, vegetarian: true, alergen: ["Gluten","Susu"], img:"https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&h=300&fit=crop" },
+        { id: 20, name: "Lumpia", price: 25000, kategori: "snack", spicy: false, vegetarian: false, alergen: ["Telur","Gluten"], img:"https://images.unsplash.com/photo-1627661254695-5262b788be9d?w=400&h=300&fit=crop" }
     ];
 
     let cart = [];
     let currentKategori = "all";
     let activeAlergi = [];
 
-    function speakText(text) {
-        if (!text) return;
-        const synth = window.speechSynthesis;
-        synth.cancel();
-        const u = new SpeechSynthesisUtterance(text);
+    // SPEECH
+    function speak(txt) {
+        if (!txt) return;
+        let u = new SpeechSynthesisUtterance(txt);
         u.lang = "id-ID";
         u.rate = 0.9;
-        synth.speak(u);
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(u);
     }
 
+    // RENDER MENU
     function renderMenu() {
         let filtered = menuData;
-        if (currentKategori === "makanan") filtered = filtered.filter(m => m.kategori === "makanan");
-        else if (currentKategori === "minuman") filtered = filtered.filter(m => m.kategori === "minuman");
-        else if (currentKategori === "snack") filtered = filtered.filter(m => m.kategori === "snack");
-        else if (currentKategori === "vegetarian") filtered = filtered.filter(m => m.vegetarian === true);
-        if (activeAlergi.length) {
+        if (currentKategori === "makanan") filtered = menuData.filter(m => m.kategori === "makanan");
+        else if (currentKategori === "minuman") filtered = menuData.filter(m => m.kategori === "minuman");
+        else if (currentKategori === "snack") filtered = menuData.filter(m => m.kategori === "snack");
+        else if (currentKategori === "vegetarian") filtered = menuData.filter(m => m.vegetarian === true);
+
+        if (activeAlergi.length > 0) {
             filtered = filtered.filter(item => !activeAlergi.some(a => item.alergen.includes(a)));
         }
-        const grid = document.getElementById("menuGrid");
-        grid.innerHTML = filtered.map(item => `
+
+        const container = document.getElementById("menuGrid");
+        container.innerHTML = filtered.map(item => `
             <div class="card">
                 <div class="card-img" style="background-image: url('${item.img}');"></div>
                 <div class="card-content">
@@ -391,82 +386,92 @@
                     <div class="price">Rp ${item.price.toLocaleString()}</div>
                     <div>🌶️ ${item.spicy ? "Pedas" : "Tidak pedas"}</div>
                     <div>⚠️ ${item.alergen.length ? item.alergen.join(", ") : "Tanpa alergen"}</div>
-                    <button class="add-to-cart" data-id="${item.id}">+ Tambah ke Keranjang</button>
+                    <button class="add-to-cart" data-id="${item.id}">➕ Tambah</button>
                 </div>
             </div>
         `).join("");
+
         document.querySelectorAll(".add-to-cart").forEach(btn => {
-            btn.onclick = () => {
-                const id = parseInt(btn.dataset.id);
-                const item = menuData.find(m => m.id === id);
-                const exist = cart.find(c => c.id === id);
+            btn.onclick = (e) => {
+                let id = parseInt(btn.dataset.id);
+                let item = menuData.find(m => m.id === id);
+                let exist = cart.find(c => c.id === id);
                 if (exist) exist.qty++;
                 else cart.push({ ...item, qty: 1 });
-                updateCart();
-                speakText(`${item.name} ditambahkan`);
+                updateCartUI();
+                speak(`${item.name} ditambahkan`);
             };
         });
     }
 
-    function updateCart() {
-        const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+    function updateCartUI() {
+        let totalQty = cart.reduce((a,b) => a + b.qty, 0);
         document.getElementById("cartCount").innerText = totalQty;
-        const totalPrice = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+        let totalPrice = cart.reduce((a,b) => a + (b.price * b.qty), 0);
         document.getElementById("cartTotal").innerText = `Rp ${totalPrice.toLocaleString()}`;
-        const cartDiv = document.getElementById("cartList");
-        cartDiv.innerHTML = cart.map(item => `
-            <div style="display:flex; justify-content:space-between; margin:10px 0; padding:6px 0; border-bottom:1px solid #eee;">
-                <span>${item.name} x${item.qty}</span>
-                <span>Rp ${(item.price * item.qty).toLocaleString()}</span>
-                <button class="remove-item" data-id="${item.id}" style="background:#FF8C42; border:none; border-radius:30px; padding:4px 12px;">Hapus</button>
-            </div>
-        `).join("");
+        let html = "";
+        cart.forEach(item => {
+            html += `<div style="display:flex; justify-content:space-between; margin:10px 0; border-bottom:1px solid #eee; padding:6px 0;">
+                        <span>${item.name} x${item.qty}</span>
+                        <span>Rp ${(item.price * item.qty).toLocaleString()}</span>
+                        <button class="remove-item" data-id="${item.id}" style="background:#FF8C42; border:none; border-radius:30px; padding:4px 12px;">Hapus</button>
+                    </div>`;
+        });
+        document.getElementById("cartList").innerHTML = html;
         document.querySelectorAll(".remove-item").forEach(btn => {
             btn.onclick = () => {
                 cart = cart.filter(c => c.id !== parseInt(btn.dataset.id));
-                updateCart();
+                updateCartUI();
             };
         });
     }
 
-    function speakOrder() {
-        if (cart.length === 0) { speakText("Keranjang kosong"); return; }
-        let text = "Pesanan Anda: ";
-        cart.forEach(item => { text += `${item.name} ${item.qty} porsi, Rp ${(item.price * item.qty).toLocaleString()}, `; });
-        text += `Total Rp ${cart.reduce((s, i) => s + (i.price * i.qty), 0).toLocaleString()}. Apakah sudah benar?`;
-        speakText(text);
+    function speakCart() {
+        if (cart.length === 0) { speak("Keranjang kosong"); return; }
+        let txt = "Pesanan Anda: ";
+        cart.forEach(item => { txt += `${item.name} ${item.qty} porsi, Rp ${(item.price * item.qty).toLocaleString()}, `; });
+        let total = cart.reduce((a,b) => a + (b.price * b.qty), 0);
+        txt += `Total Rp ${total.toLocaleString()}. Apakah sudah benar?`;
+        speak(txt);
     }
 
     function clearAll() {
-        if (cart.length === 0) { speakText("Keranjang kosong"); return; }
+        if (cart.length === 0) { speak("Keranjang kosong"); return; }
         cart = [];
-        updateCart();
-        speakText("Semua pesanan dihapus");
+        updateCartUI();
+        speak("Semua pesanan dihapus");
     }
 
+    // MODAL
     const modal = document.getElementById("cartModal");
-    document.getElementById("cartBtn").onclick = () => { modal.style.display = "flex"; updateCart(); speakOrder(); };
+    document.getElementById("cartBtn").onclick = () => { modal.style.display = "flex"; updateCartUI(); speakCart(); };
     document.getElementById("closeModal").onclick = () => modal.style.display = "none";
     document.getElementById("clearAllBtn").onclick = clearAll;
-    document.getElementById("checkoutBtn").onclick = () => { if (cart.length) { speakText("Terima kasih"); alert("Pembayaran sukses"); modal.style.display = "none"; } else alert("Keranjang kosong"); };
-    document.getElementById("speakOrderBtn").onclick = speakOrder;
-    window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
+    document.getElementById("checkoutBtn").onclick = () => { if(cart.length) { speak("Terima kasih"); alert("Simulasi sukses"); modal.style.display = "none"; } else alert("Keranjang kosong"); };
+    document.getElementById("speakOrderBtn").onclick = speakCart;
+    window.onclick = (e) => { if(e.target === modal) modal.style.display = "none"; };
 
-    document.querySelectorAll("#kategoriGroup .filter-btn").forEach(btn => {
+    // EVENT FILTER KATEGORI
+    document.querySelectorAll("#kategoriGroup .filter-chip").forEach(btn => {
         btn.onclick = () => {
-            document.querySelectorAll("#kategoriGroup .filter-btn").forEach(b => b.classList.remove("active"));
+            document.querySelectorAll("#kategoriGroup .filter-chip").forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
-            currentKategori = btn.dataset.kategori;
+            currentKategori = btn.dataset.kat;
             renderMenu();
         };
     });
 
+    // EVENT ALERGI
     function updateAlergi() {
-        activeAlergi = [...document.querySelectorAll("#alergiFilterGroup input:checked")].map(cb => cb.value);
+        activeAlergi = [];
+        document.querySelectorAll("#alergiGroup input:checked").forEach(cb => {
+            activeAlergi.push(cb.value);
+        });
         renderMenu();
     }
-    document.querySelectorAll("#alergiFilterGroup input").forEach(cb => cb.addEventListener("change", updateAlergi));
+    document.querySelectorAll("#alergiGroup input").forEach(cb => cb.addEventListener("change", updateAlergi));
 
+    // AKSESIBILITAS (FONT, CONTRAST, GRAYSCALE)
     let fontSize = 100;
     document.getElementById("increaseFont").onclick = () => { if (fontSize < 200) { fontSize += 10; document.body.style.fontSize = fontSize + "%"; } };
     document.getElementById("decreaseFont").onclick = () => { if (fontSize > 70) { fontSize -= 10; document.body.style.fontSize = fontSize + "%"; } };
@@ -483,6 +488,7 @@
         gray = !gray;
         document.body.style.filter = gray ? "grayscale(100%)" : "none";
     };
+
     renderMenu();
 </script>
 </body>
