@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Cafe Bahagia | Ramah Disabilitas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+            background: #fefcf5;
+            color: #2D3E2B;
+            line-height: 1.5;
+            font-size: 100%;
+            transition: all 0.2s ease;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        /* Touch friendly buat HP */
+        button, .filter-option, .alergi-checkbox, .add-to-cart, .cart-btn, .voice-btn {
+            min-height: 48px;
+            min-width: 48px;
+            touch-action: manipulation;
+            cursor: pointer;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -60px;
+            left: 10px;
+            background: #E8B86B;
+            color: #2D3E2B;
+            padding: 12px 20px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            z-index: 999;
+            font-size: 14px;
+        }
+        .skip-link:focus-visible {
+            top: 10px;
+            outline: 3px solid #FFD966;
+        }
+
+        .header {
+            background: rgba(255, 249, 240, 0.98);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 0.8rem 1rem;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #E8B86B;
+        }
+
+        .access-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            align-items: center;
+            background: #FFF3E0;
+            padding: 0.4rem 0.8rem;
+            border-radius: 60px;
+        }
+
+        .access-toolbar button, .cart-btn, .voice-btn {
+            background: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: all 0.2s;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+            font-size: 0.85rem;
+            color: #E8B86B;
+        }
+
+        .access-toolbar button:hover, .cart-btn:hover, .voice-btn:hover {
+            background: #E8B86B;
+            color: white;
+        }
+
+        .cart-btn {
+            background: #E8B86B;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            position: relative;
+        }
+
+        .cart-count {
+            background: #FF8C42;
+            border-radius: 50%;
+            padding: 2px 8px;
+            font-size: 0.7rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: linear-gradient(120deg, #FFF3E0, #FEFCF5);
+        }
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #E8B86B;
+        }
+        .hero p {
+            font-size: 0.9rem;
+        }
+
+        .filter-section {
+            max-width: 1400px;
+            margin: 1rem auto 0;
+            padding: 0 1rem;
+        }
+        .filter-group {
+            background: white;
+            border-radius: 24px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            border: 1px solid #FFE8CC;
+        }
+        .filter-title {
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            color: #E8B86B;
+            font-size: 1rem;
+        }
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .filter-option {
+            background: #FFF3E0;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+        .filter-option.active {
+            background: #E8B86B;
+            color: white;
+        }
+        .alergi-checkbox {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #FFF3E0;
+            padding: 8px 14px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+        }
+        .alergi-checkbox input {
+            width: 18px;
+            height: 18px;
+            accent-color: #E8B86B;
+        }
+        .alergi-checkbox:has(input:checked) {
+            background: #E8B86B;
+            color: white;
+        }
+
+        .menu-grid {
+            max-width: 1400px;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.2rem;
+        }
+        .card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid #FFE8CC;
+        }
+        .card-img {
+            height: 160px;
+            background-size: cover;
+            background-position: center;
+            background-color: #FFF3E0;
+        }
+        .card-content {
+            padding: 1rem;
+        }
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            color: #E8B86B;
+        }
+        .price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #FF8C42;
+            margin: 0.3rem 0;
+        }
+        .add-to-cart {
+            margin-top: 0.8rem;
+            width: 100%;
+            background: #E8B86B;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: white;
+            max-width: 500px;
+            width: 90%;
+            border-radius: 32px;
+            padding: 1.2rem;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .cart-item-info {
+            flex: 2;
+            font-size: 0.9rem;
+        }
+        .cart-item-price {
+            font-weight: bold;
+            min-width: 80px;
+        }
+        .remove-item {
+            background: #FF8C42;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 6px 14px;
+            font-size: 0.8rem;
+        }
+
+        footer {
+            background: #FFF3E0;
+            color: #2D3E2B;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            font-size: 0.8rem;
+        }
+
+        :focus-visible {
+            outline: 3px solid #FFD966;
+            outline-offset: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.6rem; }
+            .header-container { flex-direction: column; }
+            .access-toolbar { justify-content: center; }
+            .menu-grid { gap: 1rem; }
+            .card-img { height: 140px; }
+        }
+    </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Lompat ke konten utama</a>
+
+<div class="header">
+    <div class="header-container">
+        <div class="logo">🌸 Cafe Bahagia</div>
+        <div class="access-toolbar">
+            <button id="increaseFont">A+</button>
+            <button id="resetFont">A</button>
+            <button id="decreaseFont">A-</button>
+            <button id="highContrast">🌓 High Contrast</button>
+            <button id="grayscale">⚫ Grayscale</button>
+        </div>
+        <button id="cartBtn" class="cart-btn">🛒 Keranjang <span id="cartCount" class="cart-count">0</span></button>
+    </div>
+</div>
+
+<main id="main-content">
+    <div class="hero">
+        <h1>☕ Nikmati Hidangan Terbaik</h1>
+        <p>Ramah disabilitas | Keyboard & suara | Kontras tinggi</p>
+    </div>
+
+    <div class="filter-section">
+        <div class="filter-group">
+            <div class="filter-title">⚠️ Filter Alergi (centang yang dihindari)</div>
+            <div class="filter-buttons" id="alergiFilterGroup">
+                <label class="alergi-checkbox"><input type="checkbox" value="Kacang"> 🥜 Bebas Kacang</label>
+                <label class="alergi-checkbox"><input type="checkbox" value="Susu"> 🥛 Bebas Susu</label>
+                <label class="alergi-checkbox"><input type="checkbox" value="Gluten"> 🌾 Bebas Gluten</label>
+                <label class="alergi-checkbox"><input type="checkbox" value="Seafood"> 🦐 Bebas Seafood</label>
+                <label class="alergi-checkbox"><input type="checkbox" value="Telur"> 🥚 Bebas Telur</label>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <div class="filter-title">🍽️ Kategori Menu</div>
+            <div class="filter-buttons">
+                <button class="filter-option active" data-filter="all">Semua</button>
+                <button class="filter-option" data-filter="vegetarian">🌿 Vegetarian</button>
+                <button class="filter-option" data-filter="noSpicy">🌶️ Tanpa Pedas</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-grid" id="menuGrid"></div>
+</main>
+
+<div id="cartModal" class="modal">
+    <div class="modal-content">
+        <h2>🛒 Keranjang Saya</h2>
+        <div id="cartList"></div>
+        <p><strong>Total: <span id="cartTotal">Rp 0</span></strong></p>
+        <button id="speakOrderBtn" style="background:#E8B86B; color:white; border:none; padding:12px; border-radius:40px; width:100%; margin-bottom:8px;">🔊 Bacakan Pesanan</button>
+        <button id="clearAllBtn" style="background:#FF8C42; color:white; border:none; padding:12px; border-radius:40px; width:100%; margin-bottom:8px;">🗑️ Hapus Semua</button>
+        <button id="checkoutBtn" style="background:#2D5A27; color:white; border:none; padding:12px; border-radius:40px; width:100%; margin-bottom:8px;">✅ Lanjut ke Pembayaran</button>
+        <button id="closeModal" style="background:#ccc; border:none; padding:12px; border-radius:40px; width:100%;">Tutup</button>
+    </div>
+</div>
+
+<footer>
+    <p>📍 Jl. Bahagia No.8, Kediri | ☎️ 0812-3456-7890</p>
+    <p>♿ Akses kursi roda, toilet ramah disabilitas | 🎧 Support screen reader & keyboard</p>
+</footer>
+
+<script>
+    // 20 MENU DENGAN FOTO MAKANAN ASLI (Unsplash - Real Food Photos)
+    const menuData = [
+        { id: 1, name: "Nasi Goreng Spesial", price: 35000, spicy: true, vegetarian: false, alergen: ["Telur", "Seafood"], img: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=300&fit=crop", category: "all" },
+        { id: 2, name: "Mie Ayam Jamur", price: 28000, spicy: true, vegetarian: false, alergen: ["Telur", "Gluten"], img: "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400&h=300&fit=crop", category: "all" },
+        { id: 3, name: "Es Kopi Susu", price: 18000, spicy: false, vegetarian: true, alergen: ["Susu"], img: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=300&fit=crop", category: "all" },
+        { id: 4, name: "French Fries", price: 15000, spicy: false, vegetarian: true, alergen: [], img: "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=400&h=300&fit=crop", category: "all" },
+        { id: 5, name: "Nasi Bakar Ayam", price: 32000, spicy: true, vegetarian: false, alergen: ["Kacang"], img: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&h=300&fit=crop", category: "all" },
+        { id: 6, name: "Jus Alpukat", price: 22000, spicy: false, vegetarian: true, alergen: ["Susu"], img: "https://images.unsplash.com/photo-1526563372797-8bba9e89e41f?w=400&h=300&fit=crop", category: "all" },
+        { id: 7, name: "Donat Coklat", price: 12000, spicy: false, vegetarian: true, alergen: ["Gluten", "Susu"], img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400&h=300&fit=crop", category: "all" },
+        { id: 8, name: "Seafood Pasta", price: 45000, spicy: true, vegetarian: false, alergen: ["Seafood", "Gluten", "Susu"], img: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=400&h=300&fit=crop", category: "all" },
+        { id: 9, name: "Salad Buah", price: 22000, spicy: false, vegetarian: true, alergen: [], img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop", category: "all" },
+        { id: 10, name: "Iga Bakar", price: 55000, spicy: true, vegetarian: false, alergen: ["Kacang"], img: "https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop", category: "all" },
+        { id: 11, name: "Cappuccino", price: 25000, spicy: false, vegetarian: true, alergen: ["Susu"], img: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&h=300&fit=crop", category: "all" },
+        { id: 12, name: "Pizza Margherita", price: 48000, spicy: false, vegetarian: true, alergen: ["Gluten", "Susu"], img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&h=300&fit=crop", category: "all" },
+        { id: 13, name: "Chicken Katsu", price: 38000, spicy: false, vegetarian: false, alergen: ["Telur", "Gluten"], img: "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400&h=300&fit=crop", category: "all" },
+        { id: 14, name: "Matcha Latte", price: 27000, spicy: false, vegetarian: true, alergen: ["Susu"], img: "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?w=400&h=300&fit=crop", category: "all" },
+        { id: 15, name: "Risol Mayo", price: 15000, spicy: false, vegetarian: false, alergen: ["Telur", "Susu"], img: "https://images.unsplash.com/photo-1627661254695-5262b788be9d?w=400&h=300&fit=crop", category: "all" },
+        { id: 16, name: "Es Jeruk", price: 15000, spicy: false, vegetarian: true, alergen: [], img: "https://images.unsplash.com/photo-1546173159-31548f4a1b9f?w=400&h=300&fit=crop", category: "all" },
+        { id: 17, name: "Brownies Sundae", price: 28000, spicy: false, vegetarian: true, alergen: ["Gluten", "Susu"], img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&h=300&fit=crop", category: "all" },
+        { id: 18, name: "Sate Ayam", price: 35000, spicy: true, vegetarian: false, alergen: ["Kacang"], img: "https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?w=400&h=300&fit=crop", category: "all" },
+        { id: 19, name: "Thai Tea", price: 20000, spicy: false, vegetarian: true, alergen: ["Susu"], img: "https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=400&h=300&fit=crop", category: "all" },
+        { id: 20, name: "Lumpia Semarang", price: 25000, spicy: false, vegetarian: false, alergen: ["Telur", "Gluten"], img: "https://images.unsplash.com/photo-1627661254695-5262b788be9d?w=400&h=300&fit=crop", category: "all" }
+    ];
+
+    let cart = [];
+    let currentKategori = "all";
+    let activeAlergiFilter = [];
+
+    // SUARA BAHASA INDONESIA (WORK DI IPHONE & ANDROID, GRATIS)
+    function speakText(text) {
+        if (!text) return;
+        const synth = window.speechSynthesis;
+        synth.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = "id-ID";
+        utterance.rate = 0.9;
+        synth.speak(utterance);
+    }
+
+    function renderMenu() {
+        let filtered = menuData;
+        if (currentKategori === "vegetarian") filtered = filtered.filter(m => m.vegetarian);
+        if (currentKategori === "noSpicy") filtered = filtered.filter(m => !m.spicy);
+        if (activeAlergiFilter.length) {
+            filtered = filtered.filter(item => !activeAlergiFilter.some(a => item.alergen.includes(a)));
+        }
+
+        const grid = document.getElementById("menuGrid");
+        grid.innerHTML = filtered.map(item => `
+            <div class="card">
+                <div class="card-img" style="background-image: url('${item.img}');"></div>
+                <div class="card-content">
+                    <h3>${item.name}</h3>
+                    <div class="price">Rp ${item.price.toLocaleString()}</div>
+                    <div>🌶️ ${item.spicy ? "Pedas" : "Tidak pedas"}</div>
+                    <div>⚠️ Alergen: ${item.alergen.length ? item.alergen.join(", ") : "Tanpa alergen"}</div>
+                    <button class="add-to-cart" data-id="${item.id}">+ Tambah ke Keranjang</button>
+                </div>
+            </div>
+        `).join("");
+
+        document.querySelectorAll(".add-to-cart").forEach(btn => {
+            btn.onclick = () => {
+                const id = parseInt(btn.dataset.id);
+                const item = menuData.find(m => m.id === id);
+                const existing = cart.find(c => c.id === id);
+                if (existing) existing.qty++;
+                else cart.push({ ...item, qty: 1 });
+                updateCartUI();
+                speakText(`${item.name} ditambahkan ke keranjang`);
+            };
+        });
+    }
+
+    function updateCartUI() {
+        const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+        document.getElementById("cartCount").innerText = totalQty;
+        const totalPrice = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+        document.getElementById("cartTotal").innerText = `Rp ${totalPrice.toLocaleString()}`;
+        
+        const cartDiv = document.getElementById("cartList");
+        cartDiv.innerHTML = cart.map(item => `
+            <div class="cart-item">
+                <div class="cart-item-info">${item.name} x${item.qty}</div>
+                <div class="cart-item-price">Rp ${(item.price * item.qty).toLocaleString()}</div>
+                <button class="remove-item" data-id="${item.id}">Hapus</button>
+            </div>
+        `).join("");
+
+        document.querySelectorAll(".remove-item").forEach(btn => {
+            btn.onclick = () => {
+                cart = cart.filter(c => c.id !== parseInt(btn.dataset.id));
+                updateCartUI();
+            };
+        });
+    }
+
+    function speakOrder() {
+        if (cart.length === 0) {
+            speakText("Keranjang kosong, silakan tambah pesanan dulu.");
+            return;
+        }
+        let text = "Pesanan Anda: ";
+        cart.forEach(item => {
+            const itemTotal = item.price * item.qty;
+            text += `${item.name} ${item.qty} porsi, harga Rp ${itemTotal.toLocaleString()}, `;
+        });
+        const total = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+        text += `Total harga Rp ${total.toLocaleString()}. Apakah sudah benar?`;
+        speakText(text);
+    }
+
+    function clearAllOrders() {
+        if (cart.length === 0) {
+            speakText("Keranjang sudah kosong.");
+            return;
+        }
+        cart = [];
+        updateCartUI();
+        speakText("Semua pesanan telah dihapus.");
+    }
+
+    const modal = document.getElementById("cartModal");
+    document.getElementById("cartBtn").onclick = () => {
+        modal.style.display = "flex";
+        updateCartUI();
+        speakOrder();
+    };
+    document.getElementById("closeModal").onclick = () => modal.style.display = "none";
+    document.getElementById("clearAllBtn").onclick = clearAllOrders;
+    document.getElementById("checkoutBtn").onclick = () => {
+        if (cart.length === 0) alert("Keranjang masih kosong!");
+        else { speakText("Terima kasih, melanjutkan ke halaman pembayaran."); alert("✅ Simulasi: Lanjut ke pembayaran. Terima kasih!"); modal.style.display = "none"; }
+    };
+    document.getElementById("speakOrderBtn").onclick = speakOrder;
+    window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
+
+    function updateAlergiFilter() {
+        activeAlergiFilter = [...document.querySelectorAll("#alergiFilterGroup input:checked")].map(cb => cb.value);
+        renderMenu();
+    }
+    document.querySelectorAll("#alergiFilterGroup input").forEach(cb => cb.addEventListener("change", updateAlergiFilter));
+
+    document.querySelectorAll(".filter-option").forEach(btn => {
+        btn.addEventListener("click", () => {
+            document.querySelectorAll(".filter-option").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            currentKategori = btn.dataset.filter;
+            renderMenu();
+        });
+    });
+
+    let fontSize = 100;
+    document.getElementById("increaseFont").onclick = () => { if (fontSize < 200) { fontSize += 10; document.body.style.fontSize = fontSize + "%"; } };
+    document.getElementById("decreaseFont").onclick = () => { if (fontSize > 70) { fontSize -= 10; document.body.style.fontSize = fontSize + "%"; } };
+    document.getElementById("resetFont").onclick = () => { fontSize = 100; document.body.style.fontSize = "100%"; };
+    
+    let high = false;
+    document.getElementById("highContrast").onclick = () => {
+        high = !high;
+        document.body.style.background = high ? "#000" : "#fefcf5";
+        document.body.style.color = high ? "#ff0" : "#2D3E2B";
+        document.querySelectorAll(".card").forEach(c => c.style.background = high ? "#111" : "white");
+        document.querySelectorAll(".card-img").forEach(c => c.style.background = high ? "#222" : "");
+    };
+    
+    let gray = false;
+    document.getElementById("grayscale").onclick = () => {
+        gray = !gray;
+        document.body.style.filter = gray ? "grayscale(100%)" : "none";
+    };
+
+    renderMenu();
+</script>
+</body>
+</html>
